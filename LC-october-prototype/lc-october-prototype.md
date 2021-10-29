@@ -7,7 +7,7 @@ We define three inputs: the collection of raw datasets, compound database for an
 
 ### Input Dataset Collection: a mzML collection
 
-This is the main data input -- a collection of MS datasets in the mzML format (for `apLCMS`).
+This is the main data input -- a collection of MS datasets in the [mzML](https://www.psidev.info/mzML) format (for `apLCMS`).
 
 ```galaxy
 history_dataset_display(history_dataset_id=TBA)
@@ -15,7 +15,7 @@ history_dataset_display(history_dataset_id=TBA)
 
 ### Input Dataset: Compound database
 
-Database of compounds according to which the annotation is performed (for `xMSannotator`).
+Database of compounds according to which the annotation is performed (for `xMSannotator`). The database is required to contain the fields `compound_id`, `monoisotopic_mass`, and `molecular_formula`.
 
 ```galaxy
 history_dataset_display(history_dataset_id=TBA)
@@ -23,7 +23,7 @@ history_dataset_display(history_dataset_id=TBA)
 
 ### Input Dataset: Adduct table
 
-Database of adduct which is combined with the database of compound to form a molecule-adduct pairs (for `xMSannotator`).
+Database of adduct which is combined with the database of compound to form a molecule-adduct pairs (for `xMSannotator`). The database is required to contain `adduct`, `charge`, `mass`, and `n_molecules`.
 
 ```galaxy
 history_dataset_display(history_dataset_id=TBA)
@@ -42,6 +42,8 @@ Steps:
 
 ### Output Dataset: Feature table
 
+The table contains following columns: identification of the feature (`feature`), m/z (`mz`) and retention time (`rt`), identification of source file from mzML collection (`sample`), retention time in respective sample (`sample_rt`), and peak intensity (`sample_intensity`).
+
 ```galaxy
 history_dataset_display(history_dataset_id=TBA)
 ```
@@ -59,6 +61,8 @@ The tool generates output at each stage:
 4. and 5. include the confidence levels before and after redundancy (multiple matches) filtering, respectively
 
 ### Output Dataset: Annotation table
+
+The table contains following columns: original m/z (`mz`) and retention time (`time`), chemical DB identifiers (`chemical_ID`, `Name`, `Formula`), assigned `score` and `confidence`, and others.
 
 ```galaxy
 history_dataset_display(history_dataset_id=TBA)
